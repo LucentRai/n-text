@@ -1,0 +1,3 @@
+#define DEFAULT_LOWER_LIMIT 0
+#define DEFAULT_MIN_DIGIT 9
+#define DEFAULT_OUTPUT_FILENAME "numbers.txt"
