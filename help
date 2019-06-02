@@ -10,6 +10,7 @@ Options:
             d       Minimum digits: minimum number of digits to put; if the number is less than this value, necessary zeros are added
 
 Examples:
+n-text -r 99                        prints 0 to 99 in numbers.txt
 n-text a.txt -r 9999                prints 0 to 9999 in a.txt
 n-text -r 5555-99999 -d 5           prints 05555 to 99999 in generated_n_file.txt
 n-text dic.txt -r 0-1000000 -d 7    prints 0000000 to 1000000 in dic.txt

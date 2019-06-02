@@ -9,7 +9,7 @@
 extern int argumentCount;
 extern int lowerLimit;
 extern unsigned long long int upperLimit;
-extern unsigned int minDigit;
+extern unsigned int minDigit = 1;
 extern char *outputFilename;
 bool filenameFound = false;
 bool rangeFound = false;
@@ -17,6 +17,9 @@ bool rangeFound = false;
 void findRange(char *p);
 
 int scanCommands(char *programArgs[]){
+    if( argumentCount < MIN_ARGC){
+        printHelpInfo;
+    }
     for(int i = 1; i < argumentCount; i++){
         if(programArgs[i][0] == '-'){
             if(programArgs[i][1] == OPT_1 && !rangeFound){
@@ -56,32 +59,32 @@ void findRange(char *p){
         rangeFound = false;
     }
 
-    if(rangeFound){
-        if(lowerLimit >= upperLimit){
-            fprintf(stderr, "\t\tERROR!!!\nLower limit is greater than upper limit.");
-            printHelpInfo();
-            exit(EXIT_SUCCESS);
-        }
+    if(rangeFound && lowerLimit >= upperLimit){
+        fprintf(stderr, "\t\tERROR!!!\nLower limit is greater than upper limit.");
+        printHelpInfo();
+        exit(EXIT_SUCCESS);
     }
 }
 
 void printHelpInfo(void){
-    FILE *fp;
-    char ch;
+    FILE *helpFile;
+    int ch;
 
     printf("\n");
-    if((fp = fopen(HELP_FILENAME, "r")) == NULL){
+    if((helpFile = fopen(HELP_FILENAME, "r")) == NULL){
         #ifdef DEBUG
-            printf("Error!!! Could not open " HELP_FILENAME);
+            fprintf(stderr, "\nCOULD NOT OPEN HELP FILE.\n");
         #else
-            printf("Syntax error!!!\n"); //default message.
+            fprintf(stderr, "Syntax error!!!\n"); //default message.
         #endif
     }
     else{
-        while((ch = getc(fp)) != EOF){
-            printf("%c", ch);
+        while((ch = getc(helpFile)) != EOF){
+            putchar(ch);
         }
         printf("\n");
     }
+
+    fclose(helpFile);
     exit(EXIT_SUCCESS);
 }
