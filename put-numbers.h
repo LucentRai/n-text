@@ -1,3 +1,4 @@
-#define DEFAULT_LOWER_LIMIT 0
-#define DEFAULT_MIN_DIGIT 9
-#define DEFAULT_OUTPUT_FILENAME "numbers.txt"
+#include <stdio.h>
+#include <stdlib.h>
+
+void putNumbers(char *filename, int lowerLimit, unsigned long long int upperLimit, int minDigit);

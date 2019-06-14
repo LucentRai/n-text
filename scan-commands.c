@@ -1,16 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
-#include <ctype.h>
 #include "scan-commands.h"
 #include "put-numbers.h"
 
 extern int argumentCount;
 extern int lowerLimit;
 extern unsigned long long int upperLimit;
-extern unsigned int minDigit = 1;
+extern unsigned int minDigit;
 extern char *outputFilename;
+
 bool filenameFound = false;
 bool rangeFound = false;
 
@@ -23,13 +19,15 @@ int scanCommands(char *programArgs[]){
     for(int i = 1; i < argumentCount; i++){
         if(programArgs[i][0] == '-'){
             if(programArgs[i][1] == OPT_1 && !rangeFound){
+                optionFound[OPT_R] = true;
                 findRange(programArgs[++i]);
             }
             else if(programArgs[i][1] == OPT_2){
                 i++;
                 if(!isdigit(programArgs[i][0])){
                     printHelpInfo();
-                } 
+                }
+                optionFound[OPT_D] = true; 
                 sscanf(programArgs[i], "%d", &minDigit);
             }
             else{
