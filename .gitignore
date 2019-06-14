@@ -2,3 +2,5 @@
 scan-commands.o
 n-text.o
 put-numbers.o
+n-text.exe
+numbers.txt
