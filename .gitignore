@@ -1,0 +1,4 @@
+.vscode/*
+scan-commands.o
+n-text.o
+put-numbers.o
