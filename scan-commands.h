@@ -15,6 +15,12 @@
 #define HELP_FILENAME "help"
 #define MIN_ARGC 3
 
+<<<<<<< HEAD
 
 int scanCommands(int argc, char **argv);
+=======
+bool optionFound[OPT_N] = {false};
+
+int scanCommands(char **argv);
+>>>>>>> 0a44b9758cac4b95e47cf8e50712ef24ab488836
 void printHelpInfo(void);
